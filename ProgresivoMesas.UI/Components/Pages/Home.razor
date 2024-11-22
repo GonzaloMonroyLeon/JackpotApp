@@ -1,0 +1,22 @@
+﻿@page "/"
+
+@inject HttpClient Http
+@inject IJSRuntime JS
+@inject ControlMesasService JackpotService
+
+<div>
+    <h3>Escalera Real: @EscaleraReal</h3>
+    <h3>Escalera Color: @EscaleraColor</h3>
+</div>
+
+@code {
+    private decimal EscaleraReal { get; set; }
+    private decimal EscaleraColor { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var jackpots = await JackpotService.GetJackpotsAsync();
+        EscaleraReal = jackpots.FirstOrDefault(x => x.NameWin == "Escalera Real")?.VisualValue ?? 0;
+        EscaleraColor = jackpots.FirstOrDefault(x => x.NameWin == "Escalera Color")?.VisualValue ?? 0;
+    }
+}

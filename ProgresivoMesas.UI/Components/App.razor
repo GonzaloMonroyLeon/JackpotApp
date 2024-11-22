@@ -1,0 +1,43 @@
+﻿@inject ControlMesasService ControlMesas
+@using ProgresivoMesas.UI.Components;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="ProgresivoMesas.UI.styles.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-car.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+ <script>
+        window.initializeOdometers = function (escaleraReal, escaleraColor) {
+            var odometerReal = new Odometer({
+                el: document.querySelector('#odometerEscaleraReal'),
+                value: 0, // Valor inicial
+            });
+            var odometerColor = new Odometer({
+                el: document.querySelector('#odometerEscaleraColor'),
+                value: 0, // Valor inicial
+            });
+
+            // Actualiza los valores
+            odometerReal.update(escaleraReal);
+            odometerColor.update(escaleraColor);
+        };
+ </script>
+   
+
+    <HeadOutlet @rendermode="InteractiveServer" />
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveServer" />
+    <script src="_framework/blazor.web.js"></script>
+   
+</body>
+
+</html>
